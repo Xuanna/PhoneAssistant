@@ -3,6 +3,7 @@
     package="com.example.xuchichi.phoneassistant">
 
     <application
+        android:name=".ui.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -16,6 +17,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.activity.ScrollingActivity"
+            android:label="@string/title_activity_scrolling"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.activity.AppDetailActivity"
+            android:label="@string/title_activity_app_detail"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ui.activity.WelcomeActivity" />
+        <activity android:name=".ui.activity.GuideActivity"></activity>
     </application>
 
 </manifest>

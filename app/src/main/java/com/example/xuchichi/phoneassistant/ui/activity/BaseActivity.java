@@ -2,15 +2,11 @@ package com.example.xuchichi.phoneassistant.ui.activity;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
@@ -24,11 +20,8 @@ import com.example.xuchichi.phoneassistant.R;
 import com.example.xuchichi.phoneassistant.ui.MyApplication;
 import com.example.xuchichi.phoneassistant.ui.utils.CommonUtil;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Created by xuchichi on 2018/4/1.
@@ -38,7 +31,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public Context context;
     public BaseActivity baseActivity;
-
+    Unbinder unbinder;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +39,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         setFitsSystemWindows(true);
         setContentView(layoutId());
         context = getApplicationContext();
-        ButterKnife.bind(this);
+        MyApplication.myApplication.addActivity(this);
+        unbinder=ButterKnife.bind(this);
         initView();
 
     }
@@ -81,6 +75,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        unbinder.unbind();
+        MyApplication.myApplication.removeActivity(this);
     }
 
     /**

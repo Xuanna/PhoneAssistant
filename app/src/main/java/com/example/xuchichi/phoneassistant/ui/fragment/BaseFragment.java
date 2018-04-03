@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.example.xuchichi.phoneassistant.ui.activity.BaseActivity;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Created by xuchichi on 2018/4/1.
@@ -20,12 +21,13 @@ public abstract class BaseFragment extends Fragment {
     View view;
     public Context context;
     public BaseActivity mActivity;
+    private Unbinder unbinder;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        context = mActivity.getApplicationContext();
         mActivity = (BaseActivity) getActivity();
+        context = mActivity.getApplicationContext();
     }
 
     @Nullable
@@ -39,7 +41,7 @@ public abstract class BaseFragment extends Fragment {
             parent.removeView(view);
         }
 
-        ButterKnife.bind(view);
+        unbinder= ButterKnife.bind(view);
         initView();
 
         return view;
@@ -50,7 +52,6 @@ public abstract class BaseFragment extends Fragment {
     public abstract void initView();
 
 
-
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
@@ -58,7 +59,23 @@ public abstract class BaseFragment extends Fragment {
             loadData();
         }
     }
-    public void loadData(){
+
+    public void loadData() {
 
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
+    }
+
+    //    static T  categoryFragment;
+//
+//    public static CategoryFragment getInstance() {
+//        if (categoryFragment == null) {
+//            categoryFragment = new CategoryFragment();
+//        }
+//        return categoryFragment;
+//    }
 }

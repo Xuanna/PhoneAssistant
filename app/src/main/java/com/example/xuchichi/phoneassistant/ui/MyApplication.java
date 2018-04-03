@@ -4,6 +4,12 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.cache.CacheEntity;
+import com.lzy.okgo.cache.CacheMode;
+import com.lzy.okgo.model.HttpHeaders;
+import com.lzy.okgo.model.HttpParams;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,7 +23,10 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
         myApplication=this;
+
+        OkGo.getInstance().init(this);
     }
     public static MyApplication getInstance(){
         if (myApplication==null){
