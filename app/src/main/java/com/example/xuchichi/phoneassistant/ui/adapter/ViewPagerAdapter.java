@@ -1,12 +1,10 @@
 package com.example.xuchichi.phoneassistant.ui.adapter;
 
-import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.view.ViewGroup;
 
-import com.example.xuchichi.phoneassistant.ui.entity.FragmentInfo;
+import com.example.xuchichi.phoneassistant.ui.bean.FragmentInfo;
 
 import java.util.List;
 

@@ -2,6 +2,7 @@ package com.example.xuchichi.phoneassistant.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
@@ -11,15 +12,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TableLayout;
 
 import com.example.xuchichi.phoneassistant.R;
 import com.example.xuchichi.phoneassistant.ui.adapter.ViewPagerAdapter;
-import com.example.xuchichi.phoneassistant.ui.entity.FragmentInfo;
-import com.example.xuchichi.phoneassistant.ui.fragment.BaseFragment;
+import com.example.xuchichi.phoneassistant.ui.bean.FragmentInfo;
 import com.example.xuchichi.phoneassistant.ui.fragment.CategoryFragment;
 import com.example.xuchichi.phoneassistant.ui.fragment.GamesFragment;
-import com.example.xuchichi.phoneassistant.ui.fragment.RecommendFragment;
 import com.example.xuchichi.phoneassistant.ui.fragment.TopListFragment;
 
 import java.util.ArrayList;
@@ -30,17 +28,18 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
 
-
-    @BindView(R.id.navigationView)
-    NavigationView navigationView;
-    @BindView(R.id.drawer_layout)
-    DrawerLayout drawerLayout;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.tabLayout)
     TabLayout tabLayout;
+    @BindView(R.id.app_bar)
+    AppBarLayout appBar;
     @BindView(R.id.viewpager)
     ViewPager viewpager;
+    @BindView(R.id.navigationView)
+    NavigationView navigationView;
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawerLayout;
 
     View headView;
 
@@ -61,7 +60,7 @@ public class MainActivity extends BaseActivity {
         headView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(LoginActivity.class);
             }
         });
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -127,7 +126,6 @@ public class MainActivity extends BaseActivity {
         tabLayout.setupWithViewPager(viewpager);
 
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

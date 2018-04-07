@@ -41,7 +41,8 @@ public abstract class BaseFragment extends Fragment {
             parent.removeView(view);
         }
 
-        unbinder= ButterKnife.bind(view);
+        unbinder= ButterKnife.bind(this,view);
+
         initView();
 
         return view;

@@ -1,7 +1,5 @@
-package com.example.xuchichi.phoneassistant.ui.entity;
+package com.example.xuchichi.phoneassistant.ui.bean;
 
-
-import android.support.v4.app.Fragment;
 
 /**
  * Created by xuchichi on 2018/4/3.

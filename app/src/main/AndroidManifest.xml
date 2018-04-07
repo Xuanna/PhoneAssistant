@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.xuchichi.phoneassistant">
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:name=".ui.MyApplication"
@@ -21,12 +22,18 @@
             android:name=".ui.activity.ScrollingActivity"
             android:label="@string/title_activity_scrolling"
             android:theme="@style/AppTheme" />
+        <activity android:name=".ui.activity.WelcomeActivity" />
+        <activity android:name=".ui.activity.GuideActivity" />
+        <activity android:name=".ui.activity.LoginActivity" />
         <activity
             android:name=".ui.activity.AppDetailActivity"
             android:label="@string/title_activity_app_detail"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ui.activity.WelcomeActivity" />
-        <activity android:name=".ui.activity.GuideActivity"></activity>
+        <activity android:name=".ui.activity.AppUpdateActivity" />
+        <activity android:name=".ui.activity.DownManageActivity" />
+        <activity android:name=".ui.activity.AppUnInstallActivity" />
+        <activity android:name=".ui.activity.SettingActivity" />
+        <activity android:name=".ui.activity.SearchActivity"></activity>
     </application>
 
 </manifest>
