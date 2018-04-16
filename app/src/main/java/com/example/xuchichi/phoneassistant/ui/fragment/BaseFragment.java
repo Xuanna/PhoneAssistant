@@ -15,6 +15,12 @@ import butterknife.Unbinder;
 
 /**
  * Created by xuchichi on 2018/4/1.
+ * <p>
+ * setUserVisibleHint(boolean isVisibleToUser)方法会多次回调,
+ * 而且可能会在onCreateView()方法执行完毕之前回调.如果isVisibleToUser==true,
+ * 然后进行数据加载和控件数据填充,但是onCreateView()方法并未执行完毕,此时就会出现NullPointerException空指针异常.
+ * <p>
+ * 懒加载条件1。oncreate执行完毕 2。setUserVisibleHint返回true
  */
 
 public abstract class BaseFragment extends Fragment {
@@ -22,6 +28,10 @@ public abstract class BaseFragment extends Fragment {
     public Context context;
     public BaseActivity mActivity;
     private Unbinder unbinder;
+
+    private boolean isViewCreated;
+    private boolean isUiVisible;
+
 
     @Override
     public void onAttach(Context context) {
@@ -40,8 +50,9 @@ public abstract class BaseFragment extends Fragment {
         if (parent != null) {
             parent.removeView(view);
         }
-
-        unbinder= ButterKnife.bind(this,view);
+        isViewCreated = true;
+        lazyLoad();
+        unbinder = ButterKnife.bind(this, view);
 
         initView();
 
@@ -57,13 +68,27 @@ public abstract class BaseFragment extends Fragment {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
-            loadData();
+            isUiVisible = true;
+            lazyLoad();
+        } else {
+            isUiVisible = false;
         }
     }
 
-    public void loadData() {
+    public void lazyLoad() {
+        //这里进行双重标记判断,是因为setUserVisibleHint会多次回调,
+        // 并且会在onCreateView执行前回调,必须确保onCreateView加载完毕且页面可见,才加载数据
+        if (isUiVisible && isViewCreated) {
+            loadData();
+            isUiVisible = false;
+            isViewCreated = false;
+        }
 
     }
+
+    public void loadData() {
+    }
+
 
     @Override
     public void onDestroy() {
@@ -71,12 +96,4 @@ public abstract class BaseFragment extends Fragment {
         unbinder.unbind();
     }
 
-    //    static T  categoryFragment;
-//
-//    public static CategoryFragment getInstance() {
-//        if (categoryFragment == null) {
-//            categoryFragment = new CategoryFragment();
-//        }
-//        return categoryFragment;
-//    }
 }

@@ -4,13 +4,15 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 
-
+import com.example.xuchichi.phoneassistant.ui.di.component.AppComponent;
+import com.example.xuchichi.phoneassistant.ui.di.component.DaggerAppComponent;
+import com.example.xuchichi.phoneassistant.ui.di.module.AppModule;
+import com.example.xuchichi.phoneassistant.ui.di.module.HttpModule;
 import com.example.xuchichi.phoneassistant.ui.net.ApiService;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -21,14 +23,24 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MyApplication extends Application {
     public List<Activity> activityList = new LinkedList<>();
-    public static MyApplication myApplication;
+
     public static Retrofit retrofit;
+
+    private AppComponent mAppComponent;
+
+
+    public static MyApplication myApplication;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
         myApplication = this;
+
+        mAppComponent = DaggerAppComponent.builder()
+                .httpModule(new HttpModule())
+                .appModule(new AppModule(this)).build();
+
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(ApiService.BASE_URL)
@@ -42,6 +54,10 @@ public class MyApplication extends Application {
             myApplication = new MyApplication();
         }
         return myApplication;
+    }
+
+    public AppComponent getAppComponent() {
+        return mAppComponent;
     }
 
     /**

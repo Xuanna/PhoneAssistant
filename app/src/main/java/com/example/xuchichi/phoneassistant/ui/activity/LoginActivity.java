@@ -9,7 +9,6 @@ import android.widget.LinearLayout;
 
 import com.example.xuchichi.phoneassistant.R;
 import com.example.xuchichi.phoneassistant.ui.MyApplication;
-import com.example.xuchichi.phoneassistant.ui.bean.LoginBean;
 import com.example.xuchichi.phoneassistant.ui.bean.requestbean.LoginRequestBean;
 import com.example.xuchichi.phoneassistant.ui.net.ApiService;
 import com.example.xuchichi.phoneassistant.ui.utils.LogUtils;

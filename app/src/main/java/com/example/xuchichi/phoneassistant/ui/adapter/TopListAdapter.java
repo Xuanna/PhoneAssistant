@@ -10,12 +10,12 @@ import com.example.xuchichi.phoneassistant.ui.common.Constant;
 import com.example.xuchichi.phoneassistant.ui.utils.ImageLoader;
 
 /**
- * Created by xuchichi on 2018/4/6.
+ * Created by xuchichi on 2018/4/16.
  */
 
-public class CategoaryAdapter extends BaseRecycleAdapter<MyAppInfo.DatasBean> {
+public class TopListAdapter extends BaseRecycleAdapter<MyAppInfo.DatasBean> {
 
-    public CategoaryAdapter(Context context) {
+    public TopListAdapter(Context context) {
         super(context, R.layout.template_category);
     }
 
@@ -25,9 +25,6 @@ public class CategoaryAdapter extends BaseRecycleAdapter<MyAppInfo.DatasBean> {
         ImageView iv = holder.findViewId(R.id.img_icon);
 
         ImageLoader.getInstance().loadImage(Constant.BASE_IMG_URL + data.icon, iv);
-        textName.setText(data.displayName+"");
-
-
+        textName.setText(data.displayName + "");
     }
-
 }

@@ -6,6 +6,10 @@ import com.google.gson.Gson;
 
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Singleton;
+
+import dagger.Module;
+import dagger.Provides;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -20,13 +24,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @Description: ${TODO}(用一句话描述该文件做什么)
  * @date
  */
-
+@Module
 public class HttpModule {
 
 
-
-    public OkHttpClient provideOkHttpClient(Application application, Gson gson){
-
+    @Singleton
+    @Provides
+    public OkHttpClient provideOkHttpClient(Application application, Gson gson) {
 
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
@@ -44,14 +48,11 @@ public class HttpModule {
 //        }
 
 
-
-
-
         // 如果使用到HTTPS，我们需要创建SSLSocketFactory，并设置到client
 //        SSLSocketFactory sslSocketFactory = null;
 
         return builder
-                .addInterceptor(new CommonParamsInterceptor(application,gson))
+                .addInterceptor(new CommonParamsInterceptor(application, gson))
 
                 // 连接超时时间设置
                 .connectTimeout(10, TimeUnit.SECONDS)
@@ -63,8 +64,9 @@ public class HttpModule {
 
     }
 
-
-    public Retrofit provideRetrofit(OkHttpClient okHttpClient){
+    @Singleton
+    @Provides
+    public Retrofit provideRetrofit(OkHttpClient okHttpClient) {
 
 
         Retrofit.Builder builder = new Retrofit.Builder()
@@ -78,17 +80,11 @@ public class HttpModule {
 
     }
 
+    @Provides
+    public ApiService provideApiService(Retrofit retrofit) {
 
-    public ApiService provideApiService(Retrofit retrofit){
-
-        return  retrofit.create(ApiService.class);
+        return retrofit.create(ApiService.class);
     }
-//
-//    public RxErrorHandler provideErrorHandlder(Application application){
-//
-//        return  new RxErrorHandler(application);
-//    }
-
 
 
 }

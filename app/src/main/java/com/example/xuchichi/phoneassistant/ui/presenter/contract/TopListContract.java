@@ -4,30 +4,21 @@ import com.example.xuchichi.phoneassistant.ui.BaseView;
 import com.example.xuchichi.phoneassistant.ui.bean.requestbean.MyAppInfo;
 import com.example.xuchichi.phoneassistant.ui.presenter.BasePresenterInterface;
 
-import java.util.List;
+import okhttp3.ResponseBody;
 
 /**
- * Created by xuchichi on 2018/4/6.
+ * Created by xuchichi on 2018/4/15.
  */
 
-public interface CategoryContract {
+public interface TopListContract {
 
-    interface View extends BaseView{
+    interface View extends BaseView {
 
-
-
-        void showNoData();
-
-        void showError(String msg);
-
-        void showResult(List<MyAppInfo.DatasBean> datas);
-
+        void showDetailData(MyAppInfo myAppInfo);
     }
 
     interface Presenter extends BasePresenterInterface {
 
-        void requestDatas();
+        void getTopList(int page);
     }
-
-
 }

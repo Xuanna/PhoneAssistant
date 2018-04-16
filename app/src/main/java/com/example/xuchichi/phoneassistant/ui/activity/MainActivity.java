@@ -102,9 +102,11 @@ public class MainActivity extends BaseActivity {
         drawerLayout.addDrawerListener(drawerToggle);
     }
 
+    List<FragmentInfo> mFragments;
+
     private List<FragmentInfo> initFragments() {
 
-        List<FragmentInfo> mFragments = new ArrayList<>(4);
+        mFragments = new ArrayList<>(4);
 
         mFragments.add(new FragmentInfo("推荐", CategoryFragment.class));
         mFragments.add(new FragmentInfo("排行", TopListFragment.class));
@@ -123,6 +125,7 @@ public class MainActivity extends BaseActivity {
         viewpager.setOffscreenPageLimit(adapter.getCount());
         viewpager.setAdapter(adapter);
 
+        viewpager.setOffscreenPageLimit(mFragments.size());
         tabLayout.setupWithViewPager(viewpager);
 
     }

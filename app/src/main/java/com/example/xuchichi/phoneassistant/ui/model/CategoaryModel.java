@@ -12,6 +12,12 @@ import retrofit2.Callback;
 
 public class CategoaryModel {
 
+//    private CategoryFragment.MyApiService myApiService;
+//
+//    public CategoaryModel(CategoryFragment.MyApiService myApiService) {
+//        this.myApiService = myApiService;
+//    }
+
     public void getCategoryList(Callback<MyAppInfo> callback) {
         HttpManager manager = new HttpManager();
         CategoryFragment.MyApiService service = manager.getRetrofit(manager.getOkhttpClient()).create(CategoryFragment.MyApiService.class);

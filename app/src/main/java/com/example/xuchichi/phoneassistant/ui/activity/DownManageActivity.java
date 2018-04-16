@@ -1,8 +1,5 @@
 package com.example.xuchichi.phoneassistant.ui.activity;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
 import com.example.xuchichi.phoneassistant.R;
 
 /**

@@ -4,7 +4,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.example.xuchichi.phoneassistant"
-        minSdkVersion 21
+        minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -49,6 +49,7 @@ dependencies {
 
     //dager2
     compile 'com.google.dagger:dagger:2.15'
+    compile 'com.google.dagger:dagger-android-support:2.15'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.15'
 
 //    compile 'com.lzy.net:okgo:2.1.4'
