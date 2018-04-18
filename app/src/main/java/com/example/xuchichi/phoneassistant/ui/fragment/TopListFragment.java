@@ -15,6 +15,9 @@ import com.example.xuchichi.phoneassistant.ui.di.component.DaggerTopListComponen
 import com.example.xuchichi.phoneassistant.ui.di.module.TopListModule;
 import com.example.xuchichi.phoneassistant.ui.presenter.contract.TopListContract;
 import com.example.xuchichi.phoneassistant.ui.utils.LogUtils;
+import com.example.xuchichi.phoneassistant.ui.utils.ToastUtil;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -55,15 +58,13 @@ public class TopListFragment extends BaseFragment implements TopListContract.Vie
                 .topListModule(new TopListModule(this))
                 .build().inject(this);
 
-        presenter.getTopList(0);
 
     }
 
     @Override
     public void loadData() {
         super.loadData();
-
-
+        presenter.getTopList(0);
     }
 
     @Override
@@ -77,9 +78,14 @@ public class TopListFragment extends BaseFragment implements TopListContract.Vie
     }
 
     @Override
-    public void showDetailData(MyAppInfo myAppInfo) {
+    public void showDetailData(List<MyAppInfo.DatasBean> datas) {
         LogUtils.e("showDetailData");
-        adapter.addData(myAppInfo.datas);
+        if (datas != null) {
+            adapter.addData(datas);
+        } else {
+            ToastUtil.showText("暂无数据");
+        }
+
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.example.xuchichi.phoneassistant.ui.adapter.CategoaryAdapter;
 import com.example.xuchichi.phoneassistant.ui.bean.requestbean.MyAppInfo;
 import com.example.xuchichi.phoneassistant.ui.fragment.CategoryFragment;
 import com.example.xuchichi.phoneassistant.ui.model.CategoaryModel;
+import com.example.xuchichi.phoneassistant.ui.net.OkhttpApiService;
 import com.example.xuchichi.phoneassistant.ui.presenter.CategoaryPresenter;
 import com.example.xuchichi.phoneassistant.ui.presenter.contract.CategoryContract;
 
@@ -24,14 +25,14 @@ public class CategotyModule {//new d对象
         this.mView = view;
     }
 
-//    @Provides
-//    public CategoaryModel privodeModel(CategoryFragment.MyApiService apiService) {
-//        return new CategoaryModel(apiService);
-//    }
+    @Provides
+    public CategoaryModel privodeModel(OkhttpApiService okhttpApiService) {
+        return new CategoaryModel(okhttpApiService);
+    }
 
     @Provides
-    public CategoryContract.Presenter getPresenter(CategoryContract.View view) {//方法提供
-        return new CategoaryPresenter(view);
+    public CategoryContract.Presenter getPresenter(CategoryContract.View view,CategoaryModel model) {
+        return new CategoaryPresenter(view,model);
     }
 
     @Provides

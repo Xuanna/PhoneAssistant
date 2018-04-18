@@ -1,6 +1,7 @@
 package com.example.xuchichi.phoneassistant.ui.bean.requestbean;
 
 import com.example.xuchichi.phoneassistant.ui.bean.BaseEntity;
+import com.google.gson.Gson;
 
 import java.io.Serializable;
 import java.util.List;
@@ -75,5 +76,10 @@ public class MyAppInfo extends BaseEntity implements Serializable{
             public String link;
             public String tagName;
         }
+    }
+
+    @Override
+    public String toString() {
+        return new Gson().toJson(this);
     }
 }

@@ -21,9 +21,9 @@ public class CategoaryPresenter implements CategoryContract.Presenter {
 
     public CategoaryModel mModel;
 
-    public CategoaryPresenter(CategoryContract.View mView) {
+    public CategoaryPresenter(CategoryContract.View mView,CategoaryModel mModel) {
         this.mView = mView;
-        mModel = new CategoaryModel();
+        this.mModel=mModel;
     }
 
     @Override

@@ -24,7 +24,7 @@ public class TopListAdapter extends BaseRecycleAdapter<MyAppInfo.DatasBean> {
         TextView textName = holder.findViewId(R.id.text_name);
         ImageView iv = holder.findViewId(R.id.img_icon);
 
-        ImageLoader.getInstance().loadImage(Constant.BASE_IMG_URL + data.icon, iv);
+//        ImageLoader.getInstance().loadImage(Constant.BASE_IMG_URL + data.icon, iv);
         textName.setText(data.displayName + "");
     }
 }

@@ -4,6 +4,8 @@ import com.example.xuchichi.phoneassistant.ui.BaseView;
 import com.example.xuchichi.phoneassistant.ui.bean.requestbean.MyAppInfo;
 import com.example.xuchichi.phoneassistant.ui.presenter.BasePresenterInterface;
 
+import java.util.List;
+
 import okhttp3.ResponseBody;
 
 /**
@@ -14,7 +16,7 @@ public interface TopListContract {
 
     interface View extends BaseView {
 
-        void showDetailData(MyAppInfo myAppInfo);
+        void showDetailData(List<MyAppInfo.DatasBean> datas);
     }
 
     interface Presenter extends BasePresenterInterface {

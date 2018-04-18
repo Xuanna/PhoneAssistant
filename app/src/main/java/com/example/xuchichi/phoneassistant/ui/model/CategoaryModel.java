@@ -1,8 +1,7 @@
 package com.example.xuchichi.phoneassistant.ui.model;
 
 import com.example.xuchichi.phoneassistant.ui.bean.requestbean.MyAppInfo;
-import com.example.xuchichi.phoneassistant.ui.fragment.CategoryFragment;
-import com.example.xuchichi.phoneassistant.ui.net.HttpManager;
+import com.example.xuchichi.phoneassistant.ui.net.OkhttpApiService;
 
 import retrofit2.Callback;
 
@@ -12,16 +11,14 @@ import retrofit2.Callback;
 
 public class CategoaryModel {
 
-//    private CategoryFragment.MyApiService myApiService;
-//
-//    public CategoaryModel(CategoryFragment.MyApiService myApiService) {
-//        this.myApiService = myApiService;
-//    }
+    private OkhttpApiService myApiService;
+
+    public CategoaryModel(OkhttpApiService myApiService) {
+        this.myApiService = myApiService;
+    }
 
     public void getCategoryList(Callback<MyAppInfo> callback) {
-        HttpManager manager = new HttpManager();
-        CategoryFragment.MyApiService service = manager.getRetrofit(manager.getOkhttpClient()).create(CategoryFragment.MyApiService.class);
 
-        service.getApps("{'page':0}").enqueue(callback);
+        myApiService.getApps("{'page':0}").enqueue(callback);
     }
 }

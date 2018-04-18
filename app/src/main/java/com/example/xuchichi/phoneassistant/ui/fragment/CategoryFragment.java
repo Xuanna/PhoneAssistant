@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.xuchichi.phoneassistant.R;
+import com.example.xuchichi.phoneassistant.ui.MyApplication;
 import com.example.xuchichi.phoneassistant.ui.activity.AppDetailActivity;
 import com.example.xuchichi.phoneassistant.ui.adapter.BaseRecycleAdapter;
 import com.example.xuchichi.phoneassistant.ui.adapter.CategoaryAdapter;
@@ -97,8 +98,10 @@ public class CategoryFragment extends BaseFragment implements CategoryContract.V
     }
 
     public void init() {
-        //.appComponent(MyApplication.getInstance().getAppComponent())
-        DaggerCategoryComponent.builder().categotyModule(new CategotyModule(this)).build().inject(this);
+        DaggerCategoryComponent.builder()
+                .appComponent(MyApplication.getInstance().getAppComponent())
+                .categotyModule(new CategotyModule(this))
+                .build().inject(this);
 
         mPresenter.requestDatas();
     }
@@ -113,13 +116,6 @@ public class CategoryFragment extends BaseFragment implements CategoryContract.V
     public void loadData() {
         super.loadData();
 
-    }
-
-
-    public interface MyApiService {
-
-        @GET("featured")
-        Call<MyAppInfo> getApps(@Query("p") String params);
     }
 
     @Override

@@ -4,6 +4,7 @@ package com.example.xuchichi.phoneassistant.ui.presenter;
 import com.example.xuchichi.phoneassistant.ui.bean.requestbean.MyAppInfo;
 import com.example.xuchichi.phoneassistant.ui.model.TopListModel;
 import com.example.xuchichi.phoneassistant.ui.presenter.contract.TopListContract;
+import com.example.xuchichi.phoneassistant.ui.utils.LogUtils;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -39,8 +40,8 @@ public class TopListPresenter implements TopListContract.Presenter {
                 mView.dismissLoading();
                 if (response.isSuccessful()) {
                     try {
-
-                        mView.showDetailData(response.body());
+                        LogUtils.e("reponse" + response.body().toString());
+                        mView.showDetailData(response.body().datas);
                     } catch (Exception e) {
 
                         e.printStackTrace();
